@@ -5,14 +5,7 @@ public class Cube implements Shape {
         this.sideLen = sideLen;
     }
 
-    public double getSideLength() {
-        return sideLen;
-    }
-
-    public void setSideLength(double sideLen) {
-        this.sideLen = sideLen;
-    }
-
+    @Override
     public double getVolume() {
         return Math.pow(sideLen, 3);
     }

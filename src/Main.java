@@ -8,7 +8,7 @@ public class Main {
         double cubeVolume = cube.getVolume();
         System.out.println("Cube volume: "+cubeVolume);
 
-        Pyramid pyramid = new Pyramid(10.0, 6.0);
+        Pyramid pyramid = new Pyramid(2.0, 6.0);
         double pyramidVolume = pyramid.getVolume();
         System.out.println("Pyramid volume: "+pyramidVolume);
     }
