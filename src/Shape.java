@@ -1,2 +1,3 @@
-package PACKAGE_NAME;public interface Shape {
+abstract interface Shape {
+    double getVolume();
 }
