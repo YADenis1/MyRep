@@ -1,6 +1,7 @@
+import lombok.Getter;
+@Getter
 public class Cube implements Shape {
-    private double sideLen;
-
+    public double sideLen;
     public Cube(double sideLen) {
         this.sideLen = sideLen;
     }

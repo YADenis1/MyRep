@@ -1,6 +1,8 @@
+import lombok.Getter;
+@Getter
 public class Pyramid implements Shape {
-    private double baseLength;
-    private double height;
+    public double baseLength;
+    public double height;
 
     public Pyramid(double baseLength, double height) {
         this.baseLength = baseLength;

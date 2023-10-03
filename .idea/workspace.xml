@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8e8066a-8949-49ad-baeb-279a96c1fe29" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shapes.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Shape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lombok.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shapes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Shapes.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cube.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pyramid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pyramid.java" afterDir="false" />
@@ -32,6 +29,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -45,17 +45,23 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "LombokPluginIS_LOMBOK_JPS_FIX_ENABLED": "true",
+    "LombokPluginIS_LOMBOK_VERSION_CHECK_Enabled": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "shapes",
-    "last_opened_file_path": "C:/Users/Denis/Documents/ForMyProj/HelloWorld",
+    "last_opened_file_path": "C:/Users/Denis/Documents/ForMyProj/Shapes/libs/lombok.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "onboarding.tips.debug.path": "C:/Users/Denis/Documents/ForMyProj/Shapes/src/Main.java",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -68,7 +74,13 @@
       <option name="presentableId" value="Default" />
       <updated>1696173011531</updated>
       <workItem from="1696173012537" duration="1792000" />
-      <workItem from="1696175135134" duration="3428000" />
+      <workItem from="1696175135134" duration="3726000" />
+      <workItem from="1696257986377" duration="25000" />
+      <workItem from="1696339538146" duration="490000" />
+      <workItem from="1696340043696" duration="708000" />
+      <workItem from="1696340766832" duration="458000" />
+      <workItem from="1696341237514" duration="484000" />
+      <workItem from="1696341738474" duration="1213000" />
     </task>
     <servers />
   </component>
