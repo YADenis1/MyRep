@@ -1,0 +1,4 @@
+name: Commands
+version: '${version}'
+main: xz.xz.commands.Commands
+api-version: '1.19'
