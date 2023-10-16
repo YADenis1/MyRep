@@ -4,26 +4,85 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.Default;
 import dev.triumphteam.gui.builder.item.ItemBuilder;
+import dev.triumphteam.gui.components.GuiType;
 import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.GuiItem;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @CommandAlias("Shop")
 public class OpenMenu extends BaseCommand {
+    public void ConfirmBye(Player player, String material, int num, int cost){
+        ItemStack itemget = new ItemStack(Material.valueOf(material));
+
+        ItemMeta Metaget = itemget.getItemMeta();
+        Metaget.displayName(Component.text(material + " + ")
+                .append(Component.text(num))
+                .color(NamedTextColor.GREEN)
+                .append(Component.text(" Diamonds - " + cost).color(NamedTextColor.RED))
+        );
+
+
+        itemget.setItemMeta(Metaget);
+
+        ItemStack itemdecline = new ItemStack(Material.RED_WOOL);
+
+        ItemMeta Metadecline = itemget.getItemMeta();
+        Metadecline.displayName(Component.text("DECLINE")
+                .color(NamedTextColor.RED)
+        );
+        itemdecline.setItemMeta(Metadecline);
+
+        ItemStack itemconfirm = new ItemStack(Material.GREEN_WOOL);
+
+        ItemMeta Metaconfirm = itemget.getItemMeta();
+        Metaconfirm.displayName(Component.text("CONFIRM")
+                .color(NamedTextColor.GREEN)
+        );
+        itemconfirm.setItemMeta(Metaconfirm);
+
+
+        Gui GIU = Gui.gui()
+                .title(Component.text("APPLY?!"))
+                .type(GuiType.HOPPER)
+                .create();
+
+        GuiItem guiItem4 = ItemBuilder.from(itemconfirm).asGuiItem(event -> {
+            event.setCancelled(true);
+            ItemStack coins = new ItemStack(Material.DIAMOND, cost);
+            player.getInventory().removeItem(coins);
+            ItemStack giveItem = new ItemStack(Material.valueOf(material), num);
+            player.getInventory().addItem(giveItem);
+            GIU.close(player);
+
+        });
+
+        GuiItem guiItem1 = ItemBuilder.from(itemdecline).asGuiItem(event -> {
+            event.setCancelled(true);
+            GIU.close(player);
+        });
+
+        GuiItem guiItem3 = ItemBuilder.from(itemget).asGuiItem(event -> {
+            event.setCancelled(true);
+        });
+        GIU.setItem(0, guiItem1);
+        GIU.setItem(4, guiItem4);
+        GIU.setItem(2, guiItem3);
+        System.out.println("trying to open confirm menu");
+        GIU.open(player);
+    }
     @Default
     public void onOpen(CommandSender sender) {
         Gui gui = Gui.gui()
-                .title(Component.text("GUI Title!"))
+                .title(Component.text("SHOP!"))
                 .rows(6)
                 .create();
 
@@ -52,8 +111,6 @@ public class OpenMenu extends BaseCommand {
                     var finalCost = cost;
                     g=0;
                     String finalMaterial = material;
-                    var finalNum = num;
-                    String finalMaterial1 = material;
 
                     ItemStack item = new ItemStack(Material.valueOf(material));
                     ItemMeta Meta = item.getItemMeta();
@@ -63,14 +120,15 @@ public class OpenMenu extends BaseCommand {
                             );
                     item.setItemMeta(Meta);
 
+                    String finalMaterial2 = material;
+                    int finalNum1 = num;
+                    int finalCost1 = cost;
                     GuiItem guiItem = ItemBuilder.from(item).asGuiItem(event -> {
+
                         System.out.println("get Material succesful");
                         event.setCancelled(true);
                         if(player.getInventory().contains(Material.DIAMOND, finalCost)){
-                            ItemStack coins = new ItemStack(Material.DIAMOND, finalCost);
-                            player.getInventory().removeItem(coins);
-                            ItemStack giveItem = new ItemStack(Material.valueOf(finalMaterial1));
-                            player.getInventory().addItem(giveItem);
+                            ConfirmBye(player, finalMaterial2, finalNum1, finalCost1);
                         }
                         else {
                             player.sendMessage("Not Enough Diamonds");
@@ -82,7 +140,6 @@ public class OpenMenu extends BaseCommand {
                     material = null;
                     cost = 0;
                     num = 0;
-                    finalNum = 0;
                     finalMaterial = null;
                 }
 
