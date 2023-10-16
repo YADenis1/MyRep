@@ -7,10 +7,13 @@ import dev.triumphteam.gui.builder.item.ItemBuilder;
 import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.GuiItem;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
 import java.util.*;
@@ -51,7 +54,16 @@ public class OpenMenu extends BaseCommand {
                     String finalMaterial = material;
                     var finalNum = num;
                     String finalMaterial1 = material;
-                    GuiItem guiItem = ItemBuilder.from(Material.valueOf(material)).asGuiItem(event -> {
+
+                    ItemStack item = new ItemStack(Material.valueOf(material));
+                    ItemMeta Meta = item.getItemMeta();
+                    Meta.displayName(Component.text(material + " >> ").color(NamedTextColor.GREEN)
+                            .append(Component.text(" AMOUNT >> " + num).color(NamedTextColor.AQUA))
+                            .append(Component.text(" COST >> " + cost).color(NamedTextColor.RED))
+                            );
+                    item.setItemMeta(Meta);
+
+                    GuiItem guiItem = ItemBuilder.from(item).asGuiItem(event -> {
                         System.out.println("get Material succesful");
                         event.setCancelled(true);
                         if(player.getInventory().contains(Material.DIAMOND, finalCost)){
