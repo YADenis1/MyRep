@@ -10,11 +10,11 @@ public final class Untitled1 extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         instance = this;
-        System.out.println("Plugin Starting!!!");
+        Untitled1.getInstance().getLogger().info("Plugin Starting!!!");
         // Plugin startup logic
         BukkitCommandManager manager = new BukkitCommandManager(this);
         manager.registerCommand(new OpenGuiShop());
-        System.out.println("Plugin Working!!!");
+        Untitled1.getInstance().getLogger().info("Plugin Working!!!");
     }
 
     @Override

@@ -75,7 +75,6 @@ public class ShopRender{
         GIU.setItem(0, guiItem1);
         GIU.setItem(4, guiItem4);
         GIU.setItem(2, guiItem3);
-        System.out.println("trying to open confirm menu");
         GIU.open(player);
     }
     public void onOpen(CommandSender sender) {
@@ -85,69 +84,68 @@ public class ShopRender{
                 .pageSize(45)
                 .scrollType(ScrollType.VERTICAL)
                 .create();
+        if(!(sender instanceof Player player)) {
+            sender.sendMessage("Команда может быть выполнена только оператором, не консолью");
+            return;
+        }
 
-
-        if (sender instanceof Player player) {
-
-            String info = Untitled1.getInstance().getConfig().getString("items");
-            List<String> myList = new ArrayList<String>(Arrays.asList(info.split(",")));
-            var g =-1;
-            String material = null;
-            int cost = 0;
-            int num = 0;
-            int count = 0;
-            int localskip = skip;
-            gui.setItem(6, 3, ItemBuilder.from(Material.PAPER).setName("Previous").asGuiItem(event -> {
-                event.setCancelled(true);
-                if(skip >2){
-                    skip = skip-3;
-                    onOpen(player);
-                }
-            }));
+        String info = Untitled1.getInstance().getConfig().getString("items");
+        List<String> myList = new ArrayList<String>(Arrays.asList(info.split(",")));
+        var g =-1;
+        String material = null;
+        int cost = 0;
+        int num = 0;
+        int count = 0;
+        int localskip = skip;
+        gui.setItem(6, 3, ItemBuilder.from(Material.PAPER).setName("Previous").asGuiItem(event -> {
+            event.setCancelled(true);
+            if(skip >2){
+                skip = skip-3;
+                onOpen(player);
+            }
+        }));
 // Next item
-            gui.setItem(6, 7, ItemBuilder.from(Material.PAPER).setName("Next").asGuiItem(event ->
-                    {gui.next();
-                        event.setCancelled(true);
-                        skip = skip+3;
-                        onOpen(player);}
-            ));
-            for(String element: myList){
-                if(localskip != 0){
-                    localskip-=1;
-                    continue;
-                }
-                count++;
-                if(count>45) {
-                    break;
-                }
-                g++;
-                String reElement = element.replace("[", "").replace("{", "").replace("}", "").replace("]", "");
-                List<String> number = new ArrayList<String>(Arrays.asList(reElement.split("=")));
-                if(g==0){
-                    material = number.get(1).toString();
-                }
-                else if(g==1){
-                    cost = Integer.valueOf(number.get(1));
-                }
-                else if(g==2){
-                    num = Integer.valueOf(number.get(1));
-                    var finalCost = cost;
-                    g=0;
+        gui.setItem(6, 7, ItemBuilder.from(Material.PAPER).setName("Next").asGuiItem(event ->
+                {gui.next();
+                    event.setCancelled(true);
+                    skip = skip+3;
+                    onOpen(player);}
+        ));
+        for(String element: myList){
+            if(localskip != 0){
+                localskip-=1;
+                continue;
+            }
+            count++;
+            if(count>45*3) {
+                break;
+            }
+            g++;
+            String reElement = element.replace("[", "").replace("{", "").replace("}", "").replace("]", "");
+            List<String> number = new ArrayList<String>(Arrays.asList(reElement.split("=")));
+            if(g==0){
+                material = number.get(1).toString();
+            }
+            else if(g==1){
+                cost = Integer.valueOf(number.get(1));
+            }
+            else if(g==2){
+                num = Integer.valueOf(number.get(1));
+                var finalCost = cost;
+                g=0;
 
-                    ItemStack item = new ItemStack(Material.valueOf(material));
-                    ItemMeta Meta = item.getItemMeta();
-                    Meta.displayName(Component.text(material + " >> ").color(NamedTextColor.GREEN)
+                ItemStack item = new ItemStack(Material.valueOf(material));
+                ItemMeta Meta = item.getItemMeta();
+                Meta.displayName(Component.text(material + " >> ").color(NamedTextColor.GREEN)
                             .append(Component.text(" AMOUNT >> " + num).color(NamedTextColor.AQUA))
                             .append(Component.text(" COST >> " + cost).color(NamedTextColor.RED))
-                            );
-                    item.setItemMeta(Meta);
+                );
+                item.setItemMeta(Meta);
 
-                    String finalMaterial2 = material;
-                    int finalNum1 = num;
-                    int finalCost1 = cost;
-                    GuiItem guiItem = ItemBuilder.from(item).asGuiItem(event -> {
-
-                        System.out.println("get Material succesful");
+                String finalMaterial2 = material;
+                int finalNum1 = num;
+                int finalCost1 = cost;
+                GuiItem guiItem = ItemBuilder.from(item).asGuiItem(event -> {
                         event.setCancelled(true);
                         if(player.getInventory().contains(Material.DIAMOND, finalCost)){
                             ConfirmBye(player, finalMaterial2, finalNum1, finalCost1);
@@ -155,16 +153,16 @@ public class ShopRender{
                         else {
                             player.sendMessage("Not Enough Diamonds");
                         }
-                    });
+                });
 
-                    gui.addItem(guiItem);
-                    g =-1;
-                    material = null;
-                    cost = 0;
-                    num = 0;
-                }
-
+                gui.addItem(guiItem);
+                g =-1;
+                material = null;
+                cost = 0;
+                num = 0;
             }
+
+        }
 
             GuiItem guiItem = ItemBuilder.from(Material.DIAMOND).asGuiItem(event -> {
                 event.setCancelled(true);
@@ -173,8 +171,5 @@ public class ShopRender{
             });
             gui.addItem(guiItem);
             gui.open(player);
-        } else {
-            sender.sendMessage("Команда может быть выполнена только оператором, не консолью");
-        }
     }
 }
