@@ -2,10 +2,10 @@ package xz.xz.untitled1;
 
 import co.aikar.commands.BukkitCommandManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import xz.xz.untitled1.COMMANDS.OpenGuiShop;
 
 public final class Untitled1 extends JavaPlugin {
     private static Untitled1 instance;
-
     @Override
     public void onEnable() {
         saveDefaultConfig();
@@ -13,7 +13,7 @@ public final class Untitled1 extends JavaPlugin {
         System.out.println("Plugin Starting!!!");
         // Plugin startup logic
         BukkitCommandManager manager = new BukkitCommandManager(this);
-        manager.registerCommand(new OpenMenu());
+        manager.registerCommand(new OpenGuiShop());
         System.out.println("Plugin Working!!!");
     }
 

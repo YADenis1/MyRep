@@ -33,6 +33,7 @@ dependencies {
     implementation "dev.triumphteam:triumph-gui:3.1.2"
     compileOnly "org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT"
     implementation "co.aikar:acf-paper:0.5.1-SNAPSHOT"
+
 }
 
 def targetJavaVersion = 17

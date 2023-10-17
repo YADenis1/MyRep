@@ -1,8 +1,5 @@
-package xz.xz.untitled1;
+package xz.xz.untitled1.SHOP;
 
-import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.Default;
 import dev.triumphteam.gui.builder.item.ItemBuilder;
 import dev.triumphteam.gui.components.GuiType;
 import dev.triumphteam.gui.components.ScrollType;
@@ -16,12 +13,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import xz.xz.untitled1.Untitled1;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-@CommandAlias("Shop")
-public class OpenMenu extends BaseCommand {
+public class ShopRender{
     public int skip =0;
     public void ConfirmBye(Player player, String material, int num, int cost){
         ItemStack itemget = new ItemStack(Material.valueOf(material));
@@ -82,7 +78,6 @@ public class OpenMenu extends BaseCommand {
         System.out.println("trying to open confirm menu");
         GIU.open(player);
     }
-    @Default
     public void onOpen(CommandSender sender) {
         ScrollingGui gui = Gui.scrolling()
                 .title(Component.text("SHOP!"))
