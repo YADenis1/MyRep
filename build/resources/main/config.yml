@@ -1,3 +1,6 @@
+ItemsToOut: 45
+ScrollType: VERTICAL
+CoinsMaterial: DIAMONDS
 items:
   -
     material: APPLE

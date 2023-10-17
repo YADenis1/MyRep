@@ -18,7 +18,8 @@ import xz.xz.untitled1.Untitled1;
 import java.util.*;
 
 public class ShopRender{
-    public int skip =0;
+    private Material CoinMaterial = Material.valueOf(Untitled1.getInstance().getConfig().getString("CoinsMaterial"));
+    private int skip =0;
     public void ConfirmBye(Player player, String material, int num, int cost){
         ItemStack itemget = new ItemStack(Material.valueOf(material));
 
@@ -26,7 +27,7 @@ public class ShopRender{
         Metaget.displayName(Component.text(material + " + ")
                 .append(Component.text(num))
                 .color(NamedTextColor.GREEN)
-                .append(Component.text(" Diamonds - " + cost).color(NamedTextColor.RED))
+                .append(Component.text(Untitled1.getInstance().getConfig().getString("CoinsMaterial") + " " + cost).color(NamedTextColor.RED))
         );
 
 
@@ -56,7 +57,7 @@ public class ShopRender{
 
         GuiItem guiItem4 = ItemBuilder.from(itemconfirm).asGuiItem(event -> {
             event.setCancelled(true);
-            ItemStack coins = new ItemStack(Material.DIAMOND, cost);
+            ItemStack coins = new ItemStack(CoinMaterial, cost);
             player.getInventory().removeItem(coins);
             ItemStack giveItem = new ItemStack(Material.valueOf(material), num);
             player.getInventory().addItem(giveItem);
@@ -82,7 +83,7 @@ public class ShopRender{
                 .title(Component.text("SHOP!"))
                 .rows(6)
                 .pageSize(45)
-                .scrollType(ScrollType.VERTICAL)
+                .scrollType(ScrollType.valueOf(Untitled1.getInstance().getConfig().getString("ScrollType")))
                 .create();
         if(!(sender instanceof Player player)) {
             sender.sendMessage("Команда может быть выполнена только оператором, не консолью");
@@ -111,13 +112,16 @@ public class ShopRender{
                     skip = skip+3;
                     onOpen(player);}
         ));
+
+        int PredmetsToOut = Untitled1.getInstance().getConfig().getInt("ItemsToOut");
+
         for(String element: myList){
             if(localskip != 0){
                 localskip-=1;
                 continue;
             }
             count++;
-            if(count>45*3) {
+            if(count>PredmetsToOut*3) {
                 break;
             }
             g++;
@@ -147,11 +151,11 @@ public class ShopRender{
                 int finalCost1 = cost;
                 GuiItem guiItem = ItemBuilder.from(item).asGuiItem(event -> {
                         event.setCancelled(true);
-                        if(player.getInventory().contains(Material.DIAMOND, finalCost)){
+                        if(player.getInventory().contains(CoinMaterial, finalCost)){
                             ConfirmBye(player, finalMaterial2, finalNum1, finalCost1);
                         }
                         else {
-                            player.sendMessage("Not Enough Diamonds");
+                            player.sendMessage("Not Enough " + Untitled1.getInstance().getConfig().getString("CoinsMaterial"));
                         }
                 });
 
@@ -164,9 +168,9 @@ public class ShopRender{
 
         }
 
-            GuiItem guiItem = ItemBuilder.from(Material.DIAMOND).asGuiItem(event -> {
+            GuiItem guiItem = ItemBuilder.from(CoinMaterial).asGuiItem(event -> {
                 event.setCancelled(true);
-                ItemStack predmet = new ItemStack(Material.DIAMOND, 64);
+                ItemStack predmet = new ItemStack(CoinMaterial, 64);
                 player.getInventory().addItem(predmet);
             });
             gui.addItem(guiItem);
