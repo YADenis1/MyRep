@@ -133,7 +133,6 @@ public class ShopRender{
                     num = Integer.valueOf(number.get(1));
                     var finalCost = cost;
                     g=0;
-                    String finalMaterial = material;
 
                     ItemStack item = new ItemStack(Material.valueOf(material));
                     ItemMeta Meta = item.getItemMeta();
@@ -163,7 +162,6 @@ public class ShopRender{
                     material = null;
                     cost = 0;
                     num = 0;
-                    finalMaterial = null;
                 }
 
             }
