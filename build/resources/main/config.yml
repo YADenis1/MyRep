@@ -1,0 +1,17 @@
+items:
+  -
+    material: APPLE
+    price: 1
+    count: 8
+  -
+    material: FURNACE
+    price: 10
+    count: 1
+  -
+    material: SAND
+    price: 10
+    count: 64
+  -
+    material: WOOD
+    price: 1
+    count: 64
