@@ -179,7 +179,6 @@ public class OpenMenu extends BaseCommand {
                 player.getInventory().addItem(predmet);
             });
             gui.addItem(guiItem);
-            player.sendMessage("Привет, " + player.getName() + "!");
             gui.open(player);
         } else {
             sender.sendMessage("Команда может быть выполнена только оператором, не консолью");
