@@ -101,7 +101,6 @@ public class OpenMenu extends BaseCommand {
             int cost = 0;
             int num = 0;
             int count = 0;
-            int freeslot = 0;
             int localskip = skip;
             gui.setItem(6, 3, ItemBuilder.from(Material.PAPER).setName("Previous").asGuiItem(event -> {
                 event.setCancelled(true);
